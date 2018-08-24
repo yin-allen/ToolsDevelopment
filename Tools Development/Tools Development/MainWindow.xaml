@@ -1,0 +1,13 @@
+﻿<Window x:Class="Tools_Development.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tools_Development"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="15,15,0,0" TextWrapping="Wrap" Text="請輸入檔案名稱" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="checkButton" Content="確定" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="162,19,0,0" Click="Check"/>
+    </Grid>
+</Window>
