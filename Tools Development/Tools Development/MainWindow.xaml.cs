@@ -1,18 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-
+using System.Web.Extensions;
 namespace Tools_Development
 {
     /// <summary>
@@ -32,7 +25,25 @@ namespace Tools_Development
 
         private void Check(object sender, RoutedEventArgs e)
         {
-            JObject o1 = JObject.Parse(File.ReadAllText(@"c:\videogames.json"));
+            //C:\Users\allen\Documents\ToolsDevelopment\Tools Development\Tools Development\assets\json\schema.json
+            string position = textBox.Text;
+
+            if (System.IO.File.Exists(position))
+            {
+                using (StreamReader r = new StreamReader(@position))
+                {
+                    var json = r.ReadToEnd();
+                    var serializer = new JavaScriptSerializer();
+                    dynamic obj = serializer.Deserialize(json, typeof(object));
+
+                }
+            }
+            else
+            {
+                MessageBox.Show(" 檔案不存在");
+            }
+           
         }
+
     }
 }

@@ -26,3 +26,19 @@ C:\Users\allen\Documents\Tools-Development\Tools Development\Tools Development\o
 C:\Users\allen\Documents\Tools-Development\Tools Development\Tools Development\obj\Debug\Tools Development.g.resources
 C:\Users\allen\Documents\Tools-Development\Tools Development\Tools Development\obj\Debug\Tools_Development.Properties.Resources.resources
 C:\Users\allen\Documents\Tools-Development\Tools Development\Tools Development\obj\Debug\Tools Development.csproj.GenerateResource.Cache
+C:\Users\allen\Documents\ToolsDevelopment\Tools Development\Tools Development\bin\Debug\Tools Development.exe.config
+C:\Users\allen\Documents\ToolsDevelopment\Tools Development\Tools Development\obj\Debug\Tools Development.exe
+C:\Users\allen\Documents\ToolsDevelopment\Tools Development\Tools Development\obj\Debug\Tools Development.pdb
+C:\Users\allen\Documents\ToolsDevelopment\Tools Development\Tools Development\bin\Debug\Tools Development.exe
+C:\Users\allen\Documents\ToolsDevelopment\Tools Development\Tools Development\bin\Debug\Tools Development.pdb
+C:\Users\allen\Documents\ToolsDevelopment\Tools Development\Tools Development\bin\Debug\Newtonsoft.Json.dll
+C:\Users\allen\Documents\ToolsDevelopment\Tools Development\Tools Development\bin\Debug\Newtonsoft.Json.xml
+C:\Users\allen\Documents\ToolsDevelopment\Tools Development\Tools Development\obj\Debug\Tools Development.csprojResolveAssemblyReference.cache
+C:\Users\allen\Documents\ToolsDevelopment\Tools Development\Tools Development\obj\Debug\MainWindow.g.cs
+C:\Users\allen\Documents\ToolsDevelopment\Tools Development\Tools Development\obj\Debug\App.g.cs
+C:\Users\allen\Documents\ToolsDevelopment\Tools Development\Tools Development\obj\Debug\Tools Development_MarkupCompile.cache
+C:\Users\allen\Documents\ToolsDevelopment\Tools Development\Tools Development\obj\Debug\Tools Development_MarkupCompile.lref
+C:\Users\allen\Documents\ToolsDevelopment\Tools Development\Tools Development\obj\Debug\MainWindow.baml
+C:\Users\allen\Documents\ToolsDevelopment\Tools Development\Tools Development\obj\Debug\Tools Development.g.resources
+C:\Users\allen\Documents\ToolsDevelopment\Tools Development\Tools Development\obj\Debug\Tools_Development.Properties.Resources.resources
+C:\Users\allen\Documents\ToolsDevelopment\Tools Development\Tools Development\obj\Debug\Tools Development.csproj.GenerateResource.Cache

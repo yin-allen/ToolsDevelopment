@@ -1,40 +1,42 @@
-schema {
-	signalSequence		: char[9];
-	date				: char[8];
-	time				: char[6];
-	Channel				: char[3];
-	field5				: char[1];
-	blockNo				: char[2];
-	blockName			: byte[30];
-	SignalCategory1		: char[2];
-	SignalCategory2		: char[2];
-	SignalTag			: char[2];
-	SignalStatus		: char[1];
-	field12				: char[3];
-	field13				: byte[2];
-	field14				: char[3];
-	field15				: byte[20];
-	field16				: char[8];
-	field17				: byte[30];
-	field18				: char[20];
-	field19				: byte[60];
-	field20				: char[2];
-	field21				: char[1];
-	field22				: char[2];
-	field23				: byte[12];
-	field24				: char[8];
-	field25				: char[6];
-	MachineId			: char[6];
-	field26LastPart		: char[2];
-	field27				: byte[20];
-	field28				: byte[20];
-	field29				: char[1];
-	SignalCode			: char[4];
-	CardNo				: char[7];
-	CardType			: char[1];
-	field33				: char[2];
-	field34				: char[4];
-	field35FirstPart	: char[4];
-	GroupId				: char[1];
-	noUsed				: char[4];
+{
+  "schema": [
+    { "signalSequence": "char[9]" },
+    { "date": "char[8]" },
+    { "time": "char[6]" },
+    { "Channel": "char[3]" },
+    { "field5": "char[1]" },
+    { "blockNo": "char[2]" },
+    { "blockName": "byte[30]" },
+    { "SignalCategory1": "char[2]" },
+    { "SignalCategory2": "char[2]" },
+    { "SignalTag": "char[2]" },
+    { "SignalStatus": "char[1]" },
+    { "field12": "char[3]" },
+    { "field13": "byte[2]" },
+    { "field14": "char[3]" },
+    { "field15": "byte[20]" },
+    { "field16": "char[8]" },
+    { "field17": "byte[30]" },
+    { "field18": "char[20]" },
+    { "field19": "byte[60]" },
+    { "field20": "char[2]" },
+    { "field21": "char[1]" },
+    { "field22": "char[2]" },
+    { "field23": "byte[12]" },
+    { "field24": "char[8]" },
+    { "field25": "char[6]" },
+    { "MachineId": "char[6]" },
+    { "field26LastPart": "char[2]" },
+    { "field27": "byte[20]" },
+    { "field28": "byte[20]" },
+    { "field29": "char[1]" },
+    { "SignalCode": "char[4]" },
+    { "CardNo": "char[7]" },
+    { "CardType": "char[1]" },
+    { "field33": "char[2]" },
+    { "field34": "char[4]" },
+    { "field35FirstPart": "char[4]" },
+    { "GroupId": "char[1]" },
+    { "noUsed": " char[4]" }
+  ]
 }

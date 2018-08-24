@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="15,15,0,0" TextWrapping="Wrap" Text="請輸入檔案名稱" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="checkButton" Content="確定" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="162,19,0,0" Click="Check"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="86" Margin="15,15,0,0" TextWrapping="Wrap" Text="請輸入檔案位置與與附檔名" VerticalAlignment="Top" Width="246"/>
+        <Button x:Name="checkButton" Content="確定" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="349,46,0,0" Click="Check"/>
     </Grid>
 </Window>
