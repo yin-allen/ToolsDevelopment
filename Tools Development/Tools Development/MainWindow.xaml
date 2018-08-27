@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tools_Development"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid Name="toolsLine">
+        Title="MainWindow" Height="990" Width="525">
+    <Grid x:Name="grid">
         <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="86" Margin="15,15,0,0" TextWrapping="Wrap" Text="請輸入檔案位置與與附檔名" VerticalAlignment="Top" Width="246"/>
         <Button x:Name="checkButton" Content="確定" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="349,46,0,0" Click="Check"/>
-        <Grid HorizontalAlignment="Left" Height="100" Margin="-101,-86,0,0" VerticalAlignment="Top" Width="100"/>
+        <Grid  x:Name="showGrid"  Grid.Column="0" Grid.Row="0" Width="280" VerticalAlignment="Top" Margin="10,10,0,0" Height="843" HorizontalAlignment="Left"/>
     </Grid>
 </Window>
