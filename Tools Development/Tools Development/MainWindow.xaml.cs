@@ -35,7 +35,7 @@ namespace Tools_Development
 
         private void SetTextBox(List<Dictionary<string, string>> jsonSchema)
         {
-           
+
             int teams = jsonSchema.Count;
             string limit = "";
 
@@ -44,6 +44,11 @@ namespace Tools_Development
                 foreach (string key in listDictionary.Keys)
                 {
                     var value = listDictionary[key];
+                    var stackPanel = new StackPanel()
+                    {
+                        Orientation = Orientation.Horizontal
+                    };
+
                     Label dynamicLabel = new Label();
                     int start = listDictionary[key].IndexOf('[');
                     int end = listDictionary[key].LastIndexOf(']');
@@ -61,12 +66,12 @@ namespace Tools_Development
                     dynamicTxt.Name = key;
                     dynamicTxt.MaxLength = int.Parse(limit);
 
-                    listView.Items.Add(dynamicLabel);
-                    listView.Items.Add(dynamicTxt);
+                    stackPanel.Children.Add(dynamicLabel);
+                    stackPanel.Children.Add(dynamicTxt);
+                    listView.Items.Add(stackPanel);
                 }
             }
         }
-
 
         private List<Dictionary<string, string>> GetJson(string position)
         {
@@ -96,7 +101,7 @@ namespace Tools_Development
             //C:\Users\allen\Documents\ToolsDevelopment\Tools Development\Tools Development\assets\json\schema.json
             //string position = textBox.Text;
             string position = @"C:\Users\allen\Documents\ToolsDevelopment\Tools Development\Tools Development\assets\json\schema.json";
-           //  string position = @"D:\Visual Studio\ToolsDevelopmentNew\Tools Development\Tools Development\assets\json\schema.json";
+            //  string position = @"D:\Visual Studio\ToolsDevelopmentNew\Tools Development\Tools Development\assets\json\schema.json";
             if (System.IO.File.Exists(position))
             {
                 using (StreamReader r = new StreamReader(@position))
