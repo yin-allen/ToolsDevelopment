@@ -9,9 +9,14 @@
     <Grid x:Name="grid">
         <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="86" Margin="15,15,0,0" TextWrapping="Wrap" Text="請輸入檔案位置與與附檔名" VerticalAlignment="Top" Width="246"/>
         <Button x:Name="checkButton" Content="確定" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="344,46,0,0" Click="Check"/>
-        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Margin="0,0,257.667,-0.333">
-        <Grid  x:Name="showGrid"  Grid.Column="0" Grid.Row="0" Width="280" VerticalAlignment="Top" Margin="10,10,0,0" Height="843" HorizontalAlignment="Left"/>
-        </ScrollViewer>
         <Button x:Name="showButton" Content="儲存" HorizontalAlignment="Left" Margin="424,46,0,0" VerticalAlignment="Top" Width="75" Click="Save"/>
+        <ListView x:Name="listView" HorizontalAlignment="Left" Height="843" Margin="15,106,0,0" VerticalAlignment="Top" Width="492">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
     </Grid>
 </Window>

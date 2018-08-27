@@ -35,13 +35,9 @@ namespace Tools_Development
 
         private void SetTextBox(List<Dictionary<string, string>> jsonSchema)
         {
-            int startLocation = -600;
-            int location = 0;
-            int textboxLocation = 0;
-
+           
             int teams = jsonSchema.Count;
             string limit = "";
-
 
             foreach (var listDictionary in jsonSchema)
             {
@@ -57,25 +53,18 @@ namespace Tools_Development
                     dynamicLabel.Content = key + "(請輸入" + limit + "碼)";
                     dynamicLabel.Width = 240;
                     dynamicLabel.Height = 30;
-                    dynamicLabel.Margin = new Thickness(0, location + startLocation, 0, 0);
-                    location += 38;
 
                     var dynamicTxt = new TextBox();
                     dynamicTxt.HorizontalAlignment = HorizontalAlignment.Left;
                     dynamicTxt.Width = 240;
                     dynamicTxt.Height = 30;
                     dynamicTxt.Name = key;
-                    dynamicTxt.MaxLength = int.Parse(limit); 
-                    dynamicTxt.Margin = new Thickness(200, textboxLocation + startLocation, 0, 10);
-                    textboxLocation += 38;
+                    dynamicTxt.MaxLength = int.Parse(limit);
 
-                    showGrid.Children.Add(dynamicLabel);
-                    showGrid.Children.Add(dynamicTxt);
+                    listView.Items.Add(dynamicLabel);
+                    listView.Items.Add(dynamicTxt);
                 }
             }
-
-            if ((textboxLocation + startLocation) > showGrid.Height)
-                showGrid.Height = textboxLocation + startLocation;
         }
 
 
@@ -106,8 +95,8 @@ namespace Tools_Development
         {
             //C:\Users\allen\Documents\ToolsDevelopment\Tools Development\Tools Development\assets\json\schema.json
             //string position = textBox.Text;
-            //string position = @"C:\Users\allen\Documents\ToolsDevelopment\Tools Development\Tools Development\assets\json\schema.json";
-             string position = @"D:\Visual Studio\ToolsDevelopmentNew\Tools Development\Tools Development\assets\json\schema.json";
+            string position = @"C:\Users\allen\Documents\ToolsDevelopment\Tools Development\Tools Development\assets\json\schema.json";
+           //  string position = @"D:\Visual Studio\ToolsDevelopmentNew\Tools Development\Tools Development\assets\json\schema.json";
             if (System.IO.File.Exists(position))
             {
                 using (StreamReader r = new StreamReader(@position))
@@ -129,15 +118,15 @@ namespace Tools_Development
             List<string> textboxTexts = new List<string>();
             Dictionary<string, string> allContents = new Dictionary<string, string>();
 
-            if(showGrid.Children.Count > 0)
+            if (listView.Items.Count > 0)
             {
-                foreach (var item in showGrid.Children)
+                foreach (var item in listView.Items)
                 {
                     if (item is Label)
                     {
                         labelContents.Add((item as Label).Content.ToString());
                     }
-                    else if(item is TextBox)
+                    else if (item is TextBox)
                     {
                         textboxTexts.Add((item as TextBox).Text);
                     }
