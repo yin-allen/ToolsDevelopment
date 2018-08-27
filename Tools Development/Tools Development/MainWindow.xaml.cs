@@ -6,6 +6,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace Tools_Development
@@ -15,6 +16,8 @@ namespace Tools_Development
     /// </summary>
     public partial class MainWindow : Window
     {
+        private List<Dictionary<string, string>> jsonResult;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -65,6 +68,7 @@ namespace Tools_Development
                     dynamicTxt.Height = 30;
                     dynamicTxt.Name = key;
                     dynamicTxt.MaxLength = int.Parse(limit);
+                    dynamicTxt.PreviewTextInput += TextBoxPreviewTextInput;
 
                     stackPanel.Children.Add(dynamicLabel);
                     stackPanel.Children.Add(dynamicTxt);
@@ -100,13 +104,13 @@ namespace Tools_Development
         {
             //C:\Users\allen\Documents\ToolsDevelopment\Tools Development\Tools Development\assets\json\schema.json
             //string position = textBox.Text;
-            string position = @"C:\Users\allen\Documents\ToolsDevelopment\Tools Development\Tools Development\assets\json\schema.json";
-            //  string position = @"D:\Visual Studio\ToolsDevelopmentNew\Tools Development\Tools Development\assets\json\schema.json";
+            //string position = @"C:\Users\allen\Documents\ToolsDevelopment\Tools Development\Tools Development\assets\json\schema.json";
+              string position = @"D:\Visual Studio\ToolsDevelopmentNew\Tools Development\Tools Development\assets\json\schema.json";
             if (System.IO.File.Exists(position))
             {
                 using (StreamReader r = new StreamReader(@position))
                 {
-                    List<Dictionary<string, string>> jsonResult = GetJson(position);
+                    jsonResult = GetJson(position);
                     SetTextBox(jsonResult);
                 }
             }
@@ -142,6 +146,25 @@ namespace Tools_Development
                 }
             }
             Console.WriteLine(allContents);
+        }
+
+        private void TextBoxPreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsValid(((TextBox)sender).Name, ((TextBox)sender).Text + e.Text);
+        }
+
+        public bool IsValid(string name, string str)
+        {
+            string dataType = "";
+            foreach (var dictionaryItem in jsonResult)
+            {
+                foreach (var item in dictionaryItem)
+                {
+                    if (item.Key.Equals(name))
+                        dataType = item.Value;
+                }
+            }
+            return true;
         }
 
     }
