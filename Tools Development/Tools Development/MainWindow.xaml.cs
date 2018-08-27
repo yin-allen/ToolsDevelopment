@@ -23,6 +23,14 @@ namespace Tools_Development
             checkButton.Name = "checkButton";
             checkButton.Click += Check;
 
+            SetSaveButton();
+        }
+
+        private void SetSaveButton()
+        {
+            Button saveButton = new Button();
+            saveButton.Name = "showButton";
+            saveButton.Click += Save;
         }
 
         private void SetTextBox(List<Dictionary<string, string>> jsonSchema)
@@ -57,15 +65,17 @@ namespace Tools_Development
                     dynamicTxt.Width = 240;
                     dynamicTxt.Height = 30;
                     dynamicTxt.Name = key;
-                    dynamicTxt.MaxLength = int.Parse(limit);
+                    dynamicTxt.MaxLength = int.Parse(limit); 
                     dynamicTxt.Margin = new Thickness(200, textboxLocation + startLocation, 0, 10);
                     textboxLocation += 38;
-
 
                     showGrid.Children.Add(dynamicLabel);
                     showGrid.Children.Add(dynamicTxt);
                 }
             }
+
+            if ((textboxLocation + startLocation) > showGrid.Height)
+                showGrid.Height = textboxLocation + startLocation;
         }
 
 
@@ -96,8 +106,8 @@ namespace Tools_Development
         {
             //C:\Users\allen\Documents\ToolsDevelopment\Tools Development\Tools Development\assets\json\schema.json
             //string position = textBox.Text;
-            string position = @"C:\Users\allen\Documents\ToolsDevelopment\Tools Development\Tools Development\assets\json\schema.json";
-            // string position = @"D:\Visual Studio\ToolsDevelopmentNew\Tools Development\Tools Development\assets\json\schema.json";
+            //string position = @"C:\Users\allen\Documents\ToolsDevelopment\Tools Development\Tools Development\assets\json\schema.json";
+             string position = @"D:\Visual Studio\ToolsDevelopmentNew\Tools Development\Tools Development\assets\json\schema.json";
             if (System.IO.File.Exists(position))
             {
                 using (StreamReader r = new StreamReader(@position))
@@ -111,6 +121,33 @@ namespace Tools_Development
                 MessageBox.Show(" 檔案不存在");
             }
 
+        }
+
+        private void Save(object sender, RoutedEventArgs e)
+        {
+            List<string> labelContents = new List<string>();
+            List<string> textboxTexts = new List<string>();
+            Dictionary<string, string> allContents = new Dictionary<string, string>();
+
+            if(showGrid.Children.Count > 0)
+            {
+                foreach (var item in showGrid.Children)
+                {
+                    if (item is Label)
+                    {
+                        labelContents.Add((item as Label).Content.ToString());
+                    }
+                    else if(item is TextBox)
+                    {
+                        textboxTexts.Add((item as TextBox).Text);
+                    }
+                }
+                for (int i = 0; i < labelContents.Count; i++)
+                {
+                    allContents.Add(labelContents[i], textboxTexts[i]);
+                }
+            }
+            Console.WriteLine(allContents);
         }
 
     }
