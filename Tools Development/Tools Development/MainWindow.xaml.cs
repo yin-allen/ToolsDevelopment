@@ -104,8 +104,8 @@ namespace Tools_Development
         {
             //C:\Users\allen\Documents\ToolsDevelopment\Tools Development\Tools Development\assets\json\schema.json
             //string position = textBox.Text;
-            //string position = @"C:\Users\allen\Documents\ToolsDevelopment\Tools Development\Tools Development\assets\json\schema.json";
-              string position = @"D:\Visual Studio\ToolsDevelopmentNew\Tools Development\Tools Development\assets\json\schema.json";
+            string position = @"C:\Users\allen\Documents\ToolsDevelopment\Tools Development\Tools Development\assets\json\schema.json";
+            //  string position = @"D:\Visual Studio\ToolsDevelopmentNew\Tools Development\Tools Development\assets\json\schema.json";
             if (System.IO.File.Exists(position))
             {
                 using (StreamReader r = new StreamReader(@position))
@@ -167,5 +167,67 @@ namespace Tools_Development
             return true;
         }
 
+        private bool IsUshort(string value)
+        {
+            ushort dateValue;
+            if (ushort.TryParse(value, out dateValue))
+                return true;
+            else
+                return false;
+        }
+
+        private bool IsUlong(string value)
+        {
+            ulong dateValue;
+            if (ulong.TryParse(value, out dateValue))
+                return true;
+            else
+                return false;
+        }
+
+        private bool IsLong(string value)
+        {
+            long dateValue;
+            if (long.TryParse(value, out dateValue))
+                return true;
+            else
+                return false;
+        }
+
+        private bool IsShort(string value)
+        {
+            short dateValue;
+            if (short.TryParse(value, out dateValue))
+                return true;
+            else
+                return false;
+        }
+
+        private bool IsSbyte(string value)
+        {
+            sbyte dateValue;
+            if (sbyte.TryParse(value, out dateValue))
+                return true;
+            else
+                return false;
+        }
+
+        private bool IsInt(string value)
+        {
+            int dateValue;
+            if (int.TryParse(value, out dateValue))
+                return true;
+            else
+                return false;
+        }
+
+        private bool IsUint(string value)
+        {
+            uint dateValue;
+            if (uint.TryParse(value, out dateValue))
+                return true;
+            else
+                return false;
+        }
     }
 }
