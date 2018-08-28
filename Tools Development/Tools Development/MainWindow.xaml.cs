@@ -18,6 +18,100 @@ namespace Tools_Development
     {
         private List<Dictionary<string, string>> jsonResult;
 
+
+        private string GetDataType(string name)
+        {
+            string dataType = "";
+            foreach (var dictionaryItem in jsonResult)
+            {
+                foreach (var item in dictionaryItem)
+                {
+                    if (item.Key.Equals(name))
+                        dataType = item.Value;
+                }
+            }
+            return dataType;
+        }
+
+        private bool BoolValid(string data)
+        {
+            bool result = false;
+            if (data.Equals("true") || data.Equals("false"))
+                result = true;
+            return result;
+        }
+
+        private int GetLimit(string dataType)
+        {
+            string limit = "";
+            int start = dataType.IndexOf('[');
+            int end = dataType.LastIndexOf(']');
+            limit = dataType.Substring(start + 1, end - start - 1);
+            int length = int.Parse(limit);
+            return length;
+        }
+
+        private int GetTextLength(string data)
+        {
+            string dataType = GetDataType(data);
+            int charLength = GetLimit(dataType);
+            return charLength;
+        }
+
+        private int ByteLength(string name)
+        {
+            int charLength = GetTextLength(name);
+            int bit = 8 * charLength;
+            double numberRange = Math.Pow(2, bit);
+            string strNumber = Convert.ToString(numberRange);
+            return strNumber.Length;
+        }
+
+        private bool IsByte(string value)
+        {
+            byte dateValue;
+            if (byte.TryParse(value, out dateValue))
+                return true;
+            else
+                return false;
+        }
+
+        private bool IsDecimal(string value)
+        {
+            decimal dateValue;
+            if (decimal.TryParse(value, out dateValue))
+                return true;
+            else
+                return false;
+        }
+
+        private bool IsDouble(string value)
+        {
+            double dateValue;
+            if (double.TryParse(value, out dateValue))
+                return true;
+            else
+                return false;
+        }
+
+        private bool IsFloat(string value)
+        {
+            float dateValue;
+            if (float.TryParse(value, out dateValue))
+                return true;
+            else
+                return false;
+        }
+
+        private bool CharValid(string name, string str)
+        {
+            int charLength = GetTextLength(name);
+            if (str.Length <= charLength)
+                return true;
+            else
+                return false;
+        }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -40,7 +134,7 @@ namespace Tools_Development
         {
 
             int teams = jsonSchema.Count;
-            string limit = "";
+            int limit = 0;
 
             foreach (var listDictionary in jsonSchema)
             {
@@ -53,9 +147,7 @@ namespace Tools_Development
                     };
 
                     Label dynamicLabel = new Label();
-                    int start = listDictionary[key].IndexOf('[');
-                    int end = listDictionary[key].LastIndexOf(']');
-                    limit = listDictionary[key].Substring(start + 1, end - start - 1);
+                    limit = GetLimit(listDictionary[key]);
 
                     dynamicLabel.Name = key;
                     dynamicLabel.Content = key + "(請輸入" + limit + "碼)";
@@ -67,8 +159,12 @@ namespace Tools_Development
                     dynamicTxt.Width = 240;
                     dynamicTxt.Height = 30;
                     dynamicTxt.Name = key;
-                    dynamicTxt.MaxLength = int.Parse(limit);
-                    dynamicTxt.PreviewTextInput += TextBoxPreviewTextInput;
+
+                    string dataType = GetDataType(key);
+                    if (GetDataType(key).Contains("byte"))
+                        dynamicTxt.MaxLength = ByteLength(key);
+                    else
+                        dynamicTxt.MaxLength = limit;
 
                     stackPanel.Children.Add(dynamicLabel);
                     stackPanel.Children.Add(dynamicTxt);
@@ -104,8 +200,8 @@ namespace Tools_Development
         {
             //C:\Users\allen\Documents\ToolsDevelopment\Tools Development\Tools Development\assets\json\schema.json
             //string position = textBox.Text;
-            string position = @"C:\Users\allen\Documents\ToolsDevelopment\Tools Development\Tools Development\assets\json\schema.json";
-            //  string position = @"D:\Visual Studio\ToolsDevelopmentNew\Tools Development\Tools Development\assets\json\schema.json";
+            //string position = @"C:\Users\allen\Documents\ToolsDevelopment\Tools Development\Tools Development\assets\json\schema.json";
+              string position = @"D:\Visual Studio\ToolsDevelopmentNew\Tools Development\Tools Development\assets\json\schema.json";
             if (System.IO.File.Exists(position))
             {
                 using (StreamReader r = new StreamReader(@position))
@@ -123,6 +219,7 @@ namespace Tools_Development
 
         private void Save(object sender, RoutedEventArgs e)
         {
+            int textBoxCount = 0;
             List<string> labelContents = new List<string>();
             List<string> textboxTexts = new List<string>();
             Dictionary<string, string> allContents = new Dictionary<string, string>();
@@ -137,6 +234,9 @@ namespace Tools_Development
                     }
                     else if (item is TextBox)
                     {
+                        ++textBoxCount;
+                        string dataType = GetDataType((item as TextBox).Name);
+                        string errorMessage = ValidData(dataType, textBoxCount, item);
                         textboxTexts.Add((item as TextBox).Text);
                     }
                 }
@@ -148,11 +248,47 @@ namespace Tools_Development
             Console.WriteLine(allContents);
         }
 
-        private void TextBoxPreviewTextInput(object sender, TextCompositionEventArgs e)
+        private string ValidData(string dataType, int textBoxCount, object item)
         {
-            e.Handled = !IsValid(((TextBox)sender).Name, ((TextBox)sender).Text + e.Text);
+            string errorMessage = "";
+            if (dataType.Contains("bool"))
+                if (!BoolValid((item as TextBox).Text))
+                    errorMessage += "第" + textBoxCount + "筆格式不正確請輸入true 或 false";
+            if (dataType.Contains("byte"))
+                if (!IsByte((item as TextBox).Name))
+                    errorMessage += "第" + textBoxCount + "筆格式不正確請輸入數字";
+            if (dataType.Contains("decimal"))
+                if (!IsDecimal((item as TextBox).Name))
+                    errorMessage += "第" + textBoxCount + "筆格式不正確請輸入數字";
+            if (dataType.Contains("double"))
+                if (!IsDouble((item as TextBox).Name))
+                    errorMessage += "第" + textBoxCount + "筆格式不正確請輸入數字";
+            if (dataType.Contains("float"))
+                if (!IsFloat((item as TextBox).Name))
+                    errorMessage += "第" + textBoxCount + "筆格式不正確請輸入數字";
+            if (dataType.Contains("int"))
+                if (!IsInt((item as TextBox).Name))
+                    errorMessage += "第" + textBoxCount + "筆格式不正確請輸入數字";
+            if (dataType.Contains("uint"))
+                if (!IsUint((item as TextBox).Name))
+                    errorMessage += "第" + textBoxCount + "筆格式不正確請輸入數字";
+            if (dataType.Contains("long"))
+                if (!IsLong((item as TextBox).Name))
+                    errorMessage += "第" + textBoxCount + "筆格式不正確請輸入數字";
+            if (dataType.Contains("ulong"))
+                if (!IsUlong((item as TextBox).Name))
+                    errorMessage += "第" + textBoxCount + "筆格式不正確請輸入數字";
+            if (dataType.Contains("short"))
+                if (!IsShort((item as TextBox).Name))
+                    errorMessage += "第" + textBoxCount + "筆格式不正確請輸入數字";
+            if (dataType.Contains("ushort"))
+                if (!IsUshort((item as TextBox).Name))
+                    errorMessage += "第" + textBoxCount + "筆格式不正確請輸入數字";
+            if (dataType.Contains("sbyte"))
+                if (!IsSbyte((item as TextBox).Name))
+                    errorMessage += "第" + textBoxCount + "筆格式不正確請輸入數字";
+            return errorMessage;
         }
-
         public bool IsValid(string name, string str)
         {
             string dataType = "";
